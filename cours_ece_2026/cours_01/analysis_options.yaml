@@ -1,0 +1,9 @@
+include: package:openfoodfacts_flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    prefer_const_declarations: false
+    prefer_const_constructors: false
+
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
