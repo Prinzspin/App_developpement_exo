@@ -4,6 +4,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
+flutter_svg: 2.2.3
+
 environment:
   sdk: ^3.10.7
 
@@ -24,6 +26,12 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+assets:
+  - assets/apple_logo.svg
+  - assets/google_logo.svg
+  - assets/facebook_logo.svg
+
+  
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
