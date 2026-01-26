@@ -1,10 +1,8 @@
 name: cours_01
 description: "Template 1er cours"
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
-
-flutter_svg: 2.2.3
 
 environment:
   sdk: ^3.10.7
@@ -12,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -26,19 +26,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-assets:
-  - assets/apple_logo.svg
-  - assets/google_logo.svg
-  - assets/facebook_logo.svg
-
-  
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/to/resolution-aware-images
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/to/asset-from-package
+  assets:
+    - assets/apple_logo.svg
+    - assets/google_logo.svg
+    - assets/facebook_logo.svg
