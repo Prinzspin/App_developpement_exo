@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
         child: FractionallySizedBox(
           widthFactor: 0.8,
           child: Column(
-            children: [
+            children: <Widget>[
               EmailAddress(
                 valueChanged: (String value) {
                   print(value);
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                   setState(() {});
                 },
               ),
-              ContinueButton(onPressed: _email.length > 0 ? () {} : null),
+              ContinueButton(onPressed: _email.isNotEmpty ? () {} : null),
               OrDivider(),
               ContinueWithButton(
                 label: 'Continue with Apple',
@@ -91,7 +91,7 @@ class EmailAddress extends StatelessWidget {
 }
 
 class ContinueButton extends StatelessWidget {
-  const ContinueButton({Key? key, this.onPressed}) : super(key: key);
+  const ContinueButton({super.key, this.onPressed});
 
   final VoidCallback? onPressed;
 
@@ -117,7 +117,7 @@ class OrDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: <Widget>const [
         Expanded(child: Divider()),
         Text('Or', style: TextStyle(color: AppColors.textSecondary)),
         Expanded(child: Divider()),
@@ -151,7 +151,7 @@ class ContinueWithButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Row(
-        children: [
+        children: <Widget>[
           SvgPicture.asset(asset),
           Expanded(child: Text(label, textAlign: TextAlign.center)),
         ],
