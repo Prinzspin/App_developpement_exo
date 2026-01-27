@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:formation_flutter/l10n/app_localizations.dart';
 import 'package:formation_flutter/res/app_colors.dart';
 import 'package:formation_flutter/res/app_icons.dart';
 import 'package:formation_flutter/res/app_vectorial_images.dart';
-import 'product_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.heightOf(context);
     AppLocalizations localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -33,14 +33,14 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const Spacer(flex: 20),
+              Spacer(flex: 20),
               SvgPicture.asset(AppVectorialImages.illEmpty),
-              const Spacer(flex: 15),
-              const Text(
+              Spacer(flex: 15),
+              Text(
                 'Vous n\'avez pas encore scanné de produit',
                 textAlign: TextAlign.center,
               ),
-              const Spacer(flex: 10),
+              Spacer(flex: 10),
               TextButton(
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.blue,
@@ -49,24 +49,17 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(22.0)),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const ProductPage(),
-                    ),
-                  );
-                },
-
+                onPressed: () {},
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(localizations.my_scans_screen_button.toUpperCase()),
                     const SizedBox(width: 4.0),
-                    const Icon(Icons.arrow_right_alt_rounded),
+                    Icon(Icons.arrow_right_alt_rounded),
                   ],
                 ),
               ),
-              const Spacer(flex: 20),
+              Spacer(flex: 20),
             ],
           ),
         ),

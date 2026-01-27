@@ -96,6 +96,4 @@ class AppIcons {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
-
- 
 }
