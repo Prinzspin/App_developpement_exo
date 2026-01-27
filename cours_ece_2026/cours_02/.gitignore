@@ -1,0 +1,13 @@
+﻿# Flutter / Dart
+.dart_tool/
+build/
+**/*.dill
+**/*.track.dill
+
+# Chrome device profile (contient des données locales / secrets potentiels)
+.dart_tool/chrome-device/
+**/chrome-device/
+
+# (Optionnel) autres fichiers sensibles
+*.log
+*.tmp
