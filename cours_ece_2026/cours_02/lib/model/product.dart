@@ -271,3 +271,319 @@ Product generateProduct() => Product(
     salt: Nutriment(unit: 'g', perServing: 0.1, per100g: 0.1),
   ),
 );
+
+class Response {
+  final Product_API? produit;
+
+  Response({this.produit});
+
+  Response.fromJson(Map<String, dynamic> json) :
+    produit = json['response'] != null ? Product_API.fromJson(json['response']) : null;
+}
+
+class Product_API {
+  final String barcode;
+  final String? name;
+  final String? altName;
+  final List<String>? brands;
+  final String? nutriScore;
+  final double? novaScore;
+  final String? quantity;
+  final List<String>? stores;
+  final List<String>? countries;
+  final List<String>? manufacturingCountries;
+  final double? ecoScore;
+  final String? ecoScoreGrade;
+  final double? nutritionScore;
+  final ProductPictures? pictures;
+  final ProductIngredients? ingredients;
+  final List<String>? traces;
+  final Map<String, String>? additives;
+  final List<String>? allergens;
+  final List<String>? packaging;
+  final ProductAnalyse? analysis;
+  final ProductLevels? levels;
+  final Nutrition_Facts? nutritionFacts;
+  final Nutrient_Levels? NutrientLevels;
+
+  Product_API({
+    required this.barcode,
+    this.name,
+    this.altName,
+    this.brands,
+    this.nutriScore,
+    this.novaScore,
+    this.pictures,
+    this.ingredients, 
+    this.quantity, 
+    this.stores, 
+    this.countries, 
+    this.manufacturingCountries, 
+    this.ecoScore, 
+    this.ecoScoreGrade, 
+    this.nutritionScore, 
+    this.traces,
+    this.additives,
+    this.allergens,
+    this.analysis,
+    this.levels,
+    this.nutritionFacts,
+    this.NutrientLevels,
+    this.packaging
+
+  });
+
+  Product_API.fromJson(Map<String, dynamic> json) :
+    barcode = json['barcode'],
+    name = json['name'],
+    altName = json['altName'],
+    brands = json['brands'] != null ? List<String>.from(json['brands']) : null,
+    nutriScore = json['nutriScore'],
+    novaScore = double.tryParse(json['novaScore']?.toString() ?? ''),
+    quantity = json['quantity'],
+    stores = json['stores'] != null ? List<String>.from(json['stores']) : null,
+    countries = json['countries'] != null ? List<String>.from(json['countries']) : null,
+    manufacturingCountries = json['manufacturingCountries'] != null ? List<String>.from(json['manufacturingCountries']) : null,
+    ecoScore = double.tryParse(json['ecoScore']?.toString() ?? ''),
+    ecoScoreGrade = json['ecoScoreGrade'],
+    nutritionScore = double.tryParse(json['nutritionScore']?.toString() ?? ''),
+    pictures = json['pictures'] != null ? ProductPictures.fromJson(json['pictures']) : null,
+    ingredients = json['ingredients'] != null ? ProductIngredients.fromJson(json['ingredients']) : null,
+    traces = (json['traces'] != null && json['traces']['list'] != null) ? List<String>.from(json['traces']['list']) : null,
+    additives = json['additives'] != null ? Map<String, String>.from(json['additives']) : null,
+    allergens = (json['allergens'] != null && json['allergens']['list'] != null) ? List<String>.from(json['allergens']['list']) : null,
+    packaging = json['packaging'] != null ? List<String>.from(json['packaging']) : null,
+    analysis = json['analysis'] != null ? ProductAnalyse.fromJson(json['analysis']) : null,
+    levels = json['levels'] != null ? ProductLevels.fromJson(json['levels']) : null,
+    nutritionFacts = json['nutritionFacts'] != null ? Nutrition_Facts.fromJson(json['nutritionFacts']) : null,
+    NutrientLevels = json['nutrientLevels'] != null ? Nutrient_Levels.fromJson(json['nutrientLevels']) : null;
+    
+}
+
+
+
+class ProductPictures{
+  final String? product;
+  final String? front;
+  final String? ingredients;
+  final String? nutrition;
+
+  ProductPictures({
+    this.product,
+    this.front,
+    this.ingredients,
+    this.nutrition,
+  });
+
+  ProductPictures.fromJson(Map<String, dynamic> json) :
+    product = json['product'],
+    front = json['front'],
+    ingredients = json['ingredients'],
+    nutrition = json['nutrition'];
+}
+
+class ProductIngredients {
+  final List<String>? list;
+  final bool? containsPalmOil;
+  final String? whitAllegergens;
+  final List<ProductDetails>? details;
+
+  ProductIngredients({
+    this.list,
+    this.containsPalmOil,
+    this.whitAllegergens,
+    this.details,
+  });
+
+  ProductIngredients.fromJson(Map<String, dynamic> json) :
+    list = json['list'] != null ? List<String>.from(json['list']) : null,
+    containsPalmOil = json['containsPalmOil'],
+    whitAllegergens = json['withAllergens'],
+    details = json['details'] != null ? (json['details'] as List).map((i) => ProductDetails.fromJson(i)).toList() : null;
+
+}
+
+class ProductDetails{
+  final bool? vegan;
+  final bool? vegetarian;
+  final bool? containsPalmOil;
+  final double? percent;
+  final String? value;
+
+  ProductDetails({
+    this.vegan,
+    this.vegetarian,
+    this.containsPalmOil,
+    this.percent,
+    this.value,
+  });
+
+  ProductDetails.fromJson(Map<String, dynamic> json) :
+    vegan = json['vegan'],
+    vegetarian = json['vegetarian'],
+    containsPalmOil = json['containsPalmOil'],
+    percent = double.tryParse(json['percent']?.toString() ?? ''),
+    value = json['value'];
+}
+
+class Nutrient_Levels{
+  final NutrientLevelsItems? fat;
+  final NutrientLevelsItems? salt;
+  final NutrientLevelsItems? saturatedFat;
+  final NutrientLevelsItems? sugars;
+
+  Nutrient_Levels({
+    this.fat,
+    this.salt,
+    this.saturatedFat,
+    this.sugars,
+  });
+
+  Nutrient_Levels.fromJson(Map<String, dynamic> json) :
+    fat = json['fat'] != null ? NutrientLevelsItems.fromJson(json['fat']) : null,
+    salt = json['salt'] != null ? NutrientLevelsItems.fromJson(json['salt']) : null,
+    saturatedFat = json['saturatedFat'] != null ? NutrientLevelsItems.fromJson(json['saturatedFat']) : null,
+    sugars = json['sugars'] != null ? NutrientLevelsItems.fromJson(json['sugars']) : null;
+}
+
+class NutrientLevelsItems{
+  final String? level;
+  final double? per100g;
+
+  NutrientLevelsItems({
+    this.level,
+    this.per100g,
+  });
+
+  NutrientLevelsItems.fromJson(Map<String, dynamic> json) :
+    level = json['level'],
+    per100g = double.tryParse(json['per100g']?.toString() ?? '');
+}
+
+class Nutrition_Facts{
+  final String? servingSize;
+  final int? calories;
+  final NutritionFactsItems? fat;
+  final NutritionFactsItems? saturatedFat;
+  final NutritionFactsItems? carbohydrate;
+  final NutritionFactsItems? sugar;
+  final NutritionFactsItems? fiber;
+  final NutritionFactsItems? proteins;
+  final NutritionFactsItems? sodium;
+  final NutritionFactsItems? salt;
+  final NutritionFactsItems? energy;
+
+  Nutrition_Facts({
+    this.servingSize,
+    this.calories,
+    this.fat,
+    this.saturatedFat,
+    this.carbohydrate,
+    this.sugar,
+    this.fiber,
+    this.proteins,
+    this.sodium,
+    this.salt,
+    this.energy
+  });
+
+  Nutrition_Facts.fromJson(Map<String, dynamic> json) :
+    servingSize = json['servingSize'],
+    calories = json['calories'],
+    fat = json['fat'] != null ? NutritionFactsItems.fromJson(json['fat']) : null,
+    saturatedFat = json['saturatedFat'] != null ? NutritionFactsItems.fromJson(json['saturatedFat']) : null,
+    carbohydrate = json['carbohydrate'] != null ? NutritionFactsItems.fromJson(json['carbohydrate']) : null,
+    sugar = json['sugar'] != null ? NutritionFactsItems.fromJson(json['sugar']) : null,
+    fiber = json['fiber'] != null ? NutritionFactsItems.fromJson(json['fiber']) : null,
+    proteins = json['proteins'] != null ? NutritionFactsItems.fromJson(json['proteins']) : null,
+    sodium = json['sodium'] != null ? NutritionFactsItems.fromJson(json['sodium']) : null,
+    salt = json['salt'] != null ? NutritionFactsItems.fromJson(json['salt']) : null,
+    energy = json['energy'] != null ? NutritionFactsItems.fromJson(json['energy']) : null;
+}
+
+class NutritionFactsItems{
+  final String? unit;
+  final double? perServing;
+  final double? per100g;
+
+  NutritionFactsItems({
+    this.unit,
+    this.perServing,
+    this.per100g,
+  });
+
+  NutritionFactsItems.fromJson(Map<String, dynamic> json) :
+    unit = json['unit'],
+    perServing = double.tryParse(json['perServing']?.toString() ?? ''),
+    per100g = double.tryParse(json['per100g']?.toString() ?? '');
+}
+
+class ProductLevels{
+  final ProductLevel? energy;
+  final ProductLevel? fiber;
+  final ProductLevel? fruitsVegetablesLegumes;
+  final ProductLevel? proteins;
+  final ProductLevel? salt;
+  final ProductLevel? saturatedFat;
+  final ProductLevel? sugars;
+
+  ProductLevels({
+    this.energy,
+    this.fiber,
+    this.fruitsVegetablesLegumes,
+    this.proteins,
+    this.salt,
+    this.saturatedFat,
+    this.sugars,
+  });
+
+  ProductLevels.fromJson(Map<String, dynamic> json) :
+    energy = json['energy'] != null ? ProductLevel.fromJson(json['energy']) : null,
+    fiber = json['fiber'] != null ? ProductLevel.fromJson(json['fiber']) : null,
+    fruitsVegetablesLegumes = json['fruitsVegetablesLegumes'] != null ? ProductLevel.fromJson(json['fruitsVegetablesLegumes']) : null,
+    proteins = json['proteins'] != null ? ProductLevel.fromJson(json['proteins']) : null,
+    salt = json['salt'] != null ? ProductLevel.fromJson(json['salt']) : null,
+    saturatedFat = json['saturatedFat'] != null ? ProductLevel.fromJson(json['saturatedFat']) : null,
+    sugars = json['sugars'] != null ? ProductLevel.fromJson(json['sugars']) : null;
+
+}
+
+class ProductLevel{
+  final double? points;
+  final double? maxPoints;
+  final String? unit;
+  final double? value;
+  final String? type;
+
+  ProductLevel({
+    this.points,
+    this.maxPoints,
+    this.unit,
+    this.value,
+    this.type,
+  });
+
+  ProductLevel.fromJson(Map<String, dynamic> json) :
+    points = double.tryParse(json['points']?.toString() ?? ''),
+    maxPoints = double.tryParse(json['maxPoints']?.toString() ?? ''),
+    unit = json['unit'],
+    value = double.tryParse(json['value']?.toString() ?? ''),
+    type = json['type'];
+}
+
+class ProductAnalyse{
+  final String? palmOil;
+  final String? vegan;
+  final String? vegetarian;
+
+  ProductAnalyse({
+    this.palmOil,
+    this.vegan,
+    this.vegetarian
+  });
+
+  ProductAnalyse.fromJson(Map<String, dynamic> json) :
+    palmOil = json['palmOil'],
+    vegan = json['vegan'],
+    vegetarian = json['vegetarian'];
+}

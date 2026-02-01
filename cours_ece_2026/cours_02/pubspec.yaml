@@ -17,6 +17,8 @@ dependencies:
 
   # UI
   flutter_svg: 2.2.3
+  provider: ^6.1.5+1
+  dio: ^5.9.1
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +33,6 @@ flutter:
   assets:
     - res/drawables/
     - res/svg/
-  
 
   fonts:
     - family: AppIcons
